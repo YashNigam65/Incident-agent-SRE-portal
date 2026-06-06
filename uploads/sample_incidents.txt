@@ -1,0 +1,10 @@
+[INCIDENT-01] Error: 504 Gateway Timeout on user checkout route. Stripe webhook verification failed due to missing authorization headers.
+[INCIDENT-02] Critical Exception: Redis ConnectionException: Connection refused on port 6379. Session store fallback cluster went completely dead.
+[INCIDENT-03] Warning: Celery worker queue size exceeding 50000 items. Task database write locks detected on user authentication tables.
+[INCIDENT-04] Exception: AWS S3 Access Denied (Service: Amazon S3; Status Code: 403). IAM Role policy missing PutObject permission scopes.
+[INCIDENT-05] Error: PostgreSQL Fatal: remaining connection slots are reserved for non-replication superuser connections. Max connections reached.
+[INCIDENT-06] Outage: Kubernetes pod crashed with OOMKilled status code. Node out of physical RAM allocation blocks due to memory leaks.
+[INCIDENT-07] Alert: Elasticsearch cluster health status yellow. Unassigned shard allocation limits reached due to disk utilization exceeding 85%.
+[INCIDENT-08] Failure: Twilio API exception code 21608: Sending number is unverified. SMS notification workflows failing globally.
+[INCIDENT-09] Log Trace: JWT validation execution signature mismatch error. Gateway public signature key rotation sequence failed at midnight.
+[INCIDENT-10] Alert: Kafka broker offline. Zookeeper consensus handshake dropped on consumer cluster layer due to high packet loss.

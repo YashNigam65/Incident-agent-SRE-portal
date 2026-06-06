@@ -1,0 +1,29 @@
+Test Question 1: Testing the Redis Connection Issue
+Copy & Paste this:
+We are seeing a major influx of user session drops. The application logs are showing: Critical Exception: Redis ConnectionException: Connection refused on port 6379. The cache fallback layer seems completely unresponsive. What should we do?
+
+Why it works: It perfectly targets [INCIDENT-02] and [RCA-102]. The agent should pull the context about missing TTL configurations and recommend setting the maxmemory-policy volatile-lru rule.
+
+Test Question 2: Testing the Payment Gateway Failures
+Copy & Paste this:
+The checkout page is broken for multiple customers. We are catching validation errors during the final payment submission phase. Checking the traces, there is an issue with Stripe webhook verification headers.
+
+Why it works: It maps directly to [INCIDENT-01] and [RCA-101]. The agent should successfully surface that the Stripe signature verification keys are outdated and need to be refreshed inside your Secrets Manager.
+
+Test Question 3: Testing Database Connection Exhaustion
+Copy & Paste this:
+Production API instances are running extremely slow and throwing standard HTTP 500 errors. I am seeing messages stating: 'PostgreSQL Fatal: remaining connection slots are reserved for non-replication superuser connections'. It looks like we hit the maximum connection boundary.
+
+Why it works: This targets [INCIDENT-05] and [RCA-105]. The agent will realize that the backend application is leaking connections because database connection contexts aren't closing cleanly, and will suggest wrapping code routines inside try-finally blocks.
+
+Test Question 4: Testing Kubernetes Out-of-Memory Errors
+Copy & Paste this:
+Several application pods just went down simultaneously in our production cluster. The deployment container status is showing OOMKilled. It looks like the host node ran out of physical RAM allocation blocks.
+
+Why it works: This targets [INCIDENT-06] and [RCA-106]. The agent will recognize a systemic memory leak inside your node engine image-processing packages and advise patching your base Docker runtime layers.
+
+Test Question 5: Testing AWS S3 Permissions Issues
+Copy & Paste this:
+Users are complaining that they cannot upload profile pictures or documents to our platform. The internal app stack trace is spitting out: 'Exception: AWS S3 Access Denied (Service: Amazon S3; Status Code: 403)'.
+
+Why it works: This targets [INCIDENT-04] and [RCA-104]. The agent will identify that someone accidentally modified the bucket IAM permission policy to omit PutObject rights and will tell you to roll back the IAM roles.

@@ -1,0 +1,10 @@
+[RCA-101] Root Cause: Checkout failures caused by outdated Stripe signature key verification constants. Resolution: Updated keys in Secrets Manager.
+[RCA-102] Root Cause: Redis memory exhaustion due to absent TTL configuration limits on caching keys. Resolution: Set maxmemory-policy volatile-lru.
+[RCA-103] Root Cause: Massive celery queues caused by row deadlock conditions in PostgreSQL database. Resolution: Implemented query pagination blocks.
+[RCA-104] Root Cause: Broken image uploading pipeline due to accidental modification of AWS bucket IAM permission policies. Resolution: Rolled back IAM roles.
+[RCA-105] Root Cause: Database connection pool leaking because backend connections were not closing cleanly on API exit blocks. Resolution: Wrapped database context in try-finally.
+[RCA-106] Root Cause: Memory leaks found inside node engine image processing packages. Resolution: Patched base Docker runtime environments.
+[RCA-107] Root Cause: Large document indices filled local disk arrays. Resolution: Set up automatic log-rotation and cron cleaning routines.
+[RCA-108] Root Cause: Expired trials on verification phone validation numbers. Resolution: Configured billing auto-renew modules inside Twilio dashboard.
+[RCA-109] Root Cause: Deserialization failures during key validation changes. Resolution: Standardized authentication algorithm formatting schemas.
+[RCA-110] Root Cause: Kafka configurations used unoptimized messaging payload batch sizes. Resolution: Increased compression parameters to snappy tier.

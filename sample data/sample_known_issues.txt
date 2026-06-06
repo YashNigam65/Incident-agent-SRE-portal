@@ -1,0 +1,10 @@
+[KI-01] Known Issue: If Docker container networks restart unexpectedly, FAISS local memory files must be manually deleted and rebuilt to clean cache.
+[KI-02] Known Issue: Under extreme high concurrency loads, Gemini API free-tier may trigger a 429 Rate Limit error. Remedy: Implement basic back-off retry loops.
+[KI-03] Known Issue: Windows file paths containing nested space blocks might fail text splitting checks. Keep project root in clean drives like C:/ incident-agent/.
+[KI-04] Known Issue: Large corporate PDF document processing may take over 30 seconds inside pypdf parsers. Use split multi-file uploads.
+[KI-05] Known Issue: Pyspark configurations inside Databricks runtimes fail if initialization clusters lack python-dotenv package definitions.
+[KI-06] Known Issue: Azure DevOps pipelines fail to provision Terraform states if service principles lose management subscription scopes.
+[KI-07] Known Issue: Embedding generation models require a clean initial network handshake to download model files on the first execution.
+[KI-08] Known Issue: LangGraph execution graph loops indefinitely if the LLM output skips standard predefined keyword schema boundaries.
+[KI-09] Known Issue: Streamlit's file uploader utility flushes file streams directly into memory. Large uploads require storage buffers.
+[KI-10] Known Issue: Character encoding conflicts occur when parsing raw server log files containing hidden escape ANSI terminal coloration sequences.
