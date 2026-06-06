@@ -48,24 +48,3 @@ graph TD
     LLM -->|6. Formulate Resolution Plan| Graph
     Graph -->|7. Display Analytics & RCA Report| UI
 
-
-🎯 Section 2: MVP Scope
-To win a hackathon, you need a laser-focused Minimum Viable Product (MVP) that works flawlessly. We are skipping "nice-to-have" features (like user authentication or Slack integrations) and focusing entirely on these 9 core capabilities:
-
-📤 Upload Incident Documents: A simple drag-and-drop UI to upload raw system logs or past incident summaries text.
-
-📋 Upload RCA Documents: Seamlessly upload PDF/TXT templates of past post-mortems and Root Cause Analyses.
-
-🔢 Create Embeddings: Leverages sentence-transformers to convert unstructured raw text into mathematical vectors that capture semantic meaning.
-
-🗄️ Store in FAISS: Utilizes a lightning-fast, open-source, local vector database to securely house your embeddings.
-
-💬 Ask Incident Questions: A live chat bar where an engineer can type inquiries like: "The database is throwing Error 500, what do I do?"
-
-🔍 Find Similar Incidents: The agent autonomously queries FAISS and pulls the top 2–3 most contextually similar historical incidents.
-
-🧠 Suggest Root Cause: The AI reasons over past data to diagnose the live issue, stating conclusions like: "Based on July 2024's crash, this is likely an expired SSL certificate."
-
-🛠️ Suggest Resolution: The agent outputs clear, actionable, step-by-step terminal commands or playbooks to mitigate the live issue.
-
-📄 Generate RCA Report: A single-button click that instantly compiles the current incident symptoms, identified root cause, and applied fix into a clean, downloadable Markdown report.
