@@ -15,14 +15,14 @@ When a major IT system goes down (like an e-commerce checkout page crashing or a
 ### Cost Savings
 System downtime can cost enterprise companies anywhere from **$5,600 to over $9,000 per minute**. By slashing the time it takes to find a solution from hours to minutes, this tool directly saves companies hundreds of thousands of dollars per outage.
 
-### Hackathon Value (Why Judges Will Love It)
+### Value
 * **High ROI:** It solves a real-world, multi-billion-dollar enterprise problem.
 * **Advanced Tech Stack:** Most entries build simple sequential prompts. This project uses **LangGraph** to construct a structured, stateful multi-step agentic workflow that makes decisions dynamically.
 * **Privacy & Cost Aware:** By utilizing **FAISS** and **Gemini's free tier** (or local Ollama), it proves that an enterprise can safely index internal logs securely without massive cloud bills.
 
 ---
 
-### 🗺️ System Architecture Diagram
+### System Architecture Diagram
 
 ```mermaid
 graph TD
@@ -47,3 +47,4 @@ graph TD
     Graph -->|5. Evaluate & Synthesize| LLM
     LLM -->|6. Formulate Resolution Plan| Graph
     Graph -->|7. Display Analytics & RCA Report| UI
+
