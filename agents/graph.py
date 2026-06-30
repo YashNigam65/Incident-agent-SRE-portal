@@ -11,6 +11,38 @@ from prompts.templates import (
     RCA_REPORT_TEMPLATE
 )
 
+
+def _extract_text_from_response(response):
+    """Safely extract a text string from various possible LLM response shapes.
+
+    Returns a tuple: (text or None, error_message or None)
+    """
+    try:
+        if response is None:
+            return None, "No response returned from LLM"
+        # Most stable accessor used previously
+        if hasattr(response, "text") and response.text:
+            return response.text.strip(), None
+
+        # Some variants expose candidates or outputs
+        if hasattr(response, "candidates") and response.candidates:
+            cand = response.candidates[0]
+            if hasattr(cand, "content") and cand.content:
+                return cand.content.strip(), None
+            if hasattr(cand, "text") and cand.text:
+                return cand.text.strip(), None
+            if hasattr(cand, "output") and cand.output:
+                return str(cand.output).strip(), None
+
+        if hasattr(response, "output") and response.output:
+            return str(response.output).strip(), None
+        if hasattr(response, "content") and response.content:
+            return str(response.content).strip(), None
+
+        return None, "Response lacked text/candidates/output/content"
+    except Exception as e:
+        return None, f"Exception extracting text: {e}"
+
 # ─── BULLETPROOF API KEY PATCH ───
 # We pull your AQ. key here and configure the library globally once at the file level
 API_KEY = os.getenv("GEMINI_API_KEY")
@@ -42,8 +74,21 @@ def call_llm(state: AgentState) -> AgentState:
         f"CONTEXT THREAD:\n{state['search_context']}\n"
         f"ACTIONS TAKEN: {state['steps_taken']}\n"
     )
-    response = model.generate_content(full_prompt).text.strip()
-    
+    try:
+        raw_resp = model.generate_content(full_prompt)
+    except Exception as e:
+        state["final_output"] = f"Error calling LLM: {e}"
+        state["next_action"] = "end"
+        return state
+
+    response_text, extract_err = _extract_text_from_response(raw_resp)
+    if extract_err:
+        state["final_output"] = f"Error extracting LLM text: {extract_err}"
+        state["next_action"] = "end"
+        return state
+
+    response = response_text
+
     if response.startswith("CALL_TOOL:"):
         state["next_action"] = "tool"
         parts = response.split("|")
@@ -78,8 +123,20 @@ def suggest_resolution(state: AgentState) -> AgentState:
         search_context=state["search_context"]
     )
     
-    response = model.generate_content(formatted_prompt).text.strip()
-    state["final_output"] = response
+    try:
+        raw_resp = model.generate_content(formatted_prompt)
+    except Exception as e:
+        state["final_output"] = f"Error calling LLM for analysis: {e}"
+        state["next_action"] = "end"
+        return state
+
+    response_text, extract_err = _extract_text_from_response(raw_resp)
+    if extract_err:
+        state["final_output"] = f"Error extracting LLM analysis text: {extract_err}"
+        state["next_action"] = "end"
+        return state
+
+    state["final_output"] = response_text
     state["steps_taken"].append("suggest_resolution")
     return state
 
@@ -92,8 +149,20 @@ def generate_rca_report(state: AgentState) -> AgentState:
         final_output=state["final_output"]
     )
     
-    response = model.generate_content(formatted_report_prompt).text.strip()
-    state["rca_report"] = response
+    try:
+        raw_resp = model.generate_content(formatted_report_prompt)
+    except Exception as e:
+        state["rca_report"] = f"Error calling LLM for RCA generation: {e}"
+        state["next_action"] = "end"
+        return state
+
+    response_text, extract_err = _extract_text_from_response(raw_resp)
+    if extract_err:
+        state["rca_report"] = f"Error extracting LLM RCA text: {extract_err}"
+        state["next_action"] = "end"
+        return state
+
+    state["rca_report"] = response_text
     state["steps_taken"].append("generate_rca_report")
     return state
 

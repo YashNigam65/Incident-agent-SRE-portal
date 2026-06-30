@@ -1,0 +1,9 @@
+1. Title: Payment API returning Error PAY-4017.'
+
+2. Title: Kubernetes Pods Enter CrashLoopBackOff After Invalid ConfigMap Deployment
+
+CrashLoopBackOff
+
+Application failed to start.
+Missing mandatory configuration key:
+DATABASE_CONNECTION_STRING
