@@ -4,7 +4,7 @@ An autonomous, multi-agent RAG system built with **LangGraph**, **FAISS**, and *
 
 ---
 
-## 🛠️ Section 1: Project Overview
+##  Section 1: Project Overview
 
 ### The Business Problem
 When a major IT system goes down (like an e-commerce checkout page crashing or a banking app freezing), every minute of downtime costs money and damages customer trust. IT support teams are instantly flooded with pressure. To fix the issue, engineers usually have to manually dig through messy Slack channels, old post-mortems, and hundreds of past tickets to see if this problem has happened before. This manual search is slow, exhausting, and prone to human error under stress.

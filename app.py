@@ -57,14 +57,14 @@ if page == "1. Upload Documents":
                 st.warning("Please upload files first.")
 
     with col2:
-        st.subheader("Root Cause Analysis (RCA) Reports")
+        st.subheader("RCA & Known Issues")
         uploaded_rcas = st.file_uploader(
             "Upload past structured RCA templates", 
             type=["pdf", "docx", "txt"], 
             accept_multiple_files=True,
             key="rca_uploader"
         )
-        if st.button("Index RCAs", use_container_width=True):
+        if st.button("Index RCA & Known Issues", use_container_width=True):
             if uploaded_rcas:
                 with st.spinner("Embedding official corporate RCAs..."):
                     for file in uploaded_rcas:

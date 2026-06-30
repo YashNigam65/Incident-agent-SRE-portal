@@ -33,7 +33,7 @@ Use this formal enterprise styling schema:
 - **Impacted Systems:** Which customer-facing apps crashed.
 
 ## 2. CHRONOLOGY OF EVENTS
-- Chronological breakdown based on logs.
+- Timeline breakdown (use ONLY events mentioned in the incident query - do NOT fabricate timestamps).
 
 ## 3. ROOT CAUSE ISOLATION
 - Technical deep-dive explaining why the failure sequence propagated.
